@@ -1,213 +1,80 @@
 # Comandos Git básicos
-1. git config
-Quando você está utilizando o Git pela primeira vez ou com uma instalação nova, em um projeto colaborativo, esse comando é fundamental para configurar sua identidade de usuário, inserindo informações como nome e email que serão empregadas em cada commit.
+1. git commit
+O commit é um comando importantíssimo. Ele leva as mudanças de um ambiente local para o repositório no git, permitindo ainda a inserção de uma mensagem descritiva. Assim, a cada mudança ou finalização de uma tarefa, a pessoa desenvolvedora pode submeter seus feitos e deixar claro para as outras pessoas o que ela fez. 
 
-Exemplo:
 
-$ git config –global user.name “Seu nome”
 
-$ git config –global user.email “Seu email”
+2. git add
+Um comando muito similar ao “commit” e que trabalha com ele é o “add”. Com essa palavra-chave, nós preparamos arquivos para o próximo “commit”, ou seja, para subir para o repositório na web. É possível adicionar um único arquivo ou todos os arquivos modificados de uma única vez.
 
-2. git init
-Esse é o comando que você irá utilizar para criar um novo projeto de git. O comando irá criar um repositório novo em branco e, a partir daí, será possível armazenar seu código fonte, alterar, salvaguardar alterações etc.
 
-Exemplo:
+Para um único arquivo, use “git add nome_do_arquivo”. Para preparar todos os arquivos para atualização (incluindo as exclusões), use “git add -A”. Para preparar somente as adições, use “git add .”
 
-$ git init
 
-Se você já possui um repositório anterior ou deseja criar um repositório com um nome em específico, você pode passar o nome como parâmetro do comando:
+3. git init
+O init é o primeiro dos comandos git que se usa para começar um repositório. Isto é, o que ele faz é transformar uma pasta com códigos no seu HD em uma pasta monitorada pelo git, que será carregada para a plataforma e estará visível para outras pessoas. Ou então cria um repositório novo, do zero. Exemplo: “git init”
 
-$ git init <O nome do seu repositório>
 
-3. git clone
-Esse comando Git cria uma cópia exata de um repositório já existente.
+4. git clone
+Para começar, muitas pessoas optam por uma alternativa ao init: o git clone. A partir dele, você clona um código de um repositório para a sua máquina para então começar a trabalhar nele. Pode ser um projeto de uma pessoa da sua empresa, um projeto de colegas da faculdade ou até mesmo uma aplicação open-source para a qual você julgou interessante colaborar.
 
-Então… quando usar git init e quando usar git clone? O git clone é mais avançado, uma vez que ele mesmo executa um comando git init internamente. Além disso, ele verifica todo o conteúdo do projeto.
 
-Exemplo:
 
-git clone <URL do seu projeto>
+5. git status
+Para saber algumas informações sobre a ramificação na qual você está trabalhando agora, use o “status”. Esse comando esclarece quais arquivos foram alterados e faz uma comparação com relação à ramificação principal. Exemplo: “git status”
 
-4. git add
-Esse comando Git adiciona os arquivos especificados de código ao seu repositório, sejam arquivos novos ou arquivos anteriores que foram alterados. Oferece diferentes possibilidades de sintaxe.
-
-Exemplo:
-
-$ git add seu_arquivo (esse comando irá adicionar o arquivo em específico ao repositório)
-
-$ git add * (esse comando irá adicionar todos os arquivos novos e/ou modificados ao repositório)
-
-5. git commit
-É fundamental se estabelecer uma diferença entre git add e git commit:
-
-git add adiciona seus arquivos modificados à fila para serem submetidos a um commit posteriormente. Os arquivos não passaram por um commit.
-O git commit executa o commit dos arquivos que foram adicionados e cria uma nova revisão com um log. Por outro lado, se você não adicionar nenhum arquivo, o git não fará o commit de nada.
-É possível combinar as duas ações em um único comando: $ git commit -a.
-
-Também é possível adicionar uma mensagem para a execução de um commit. Exemplo:
-
-$ git commit -m “seu comentário”
 
 6. git branch
-É comum na maior parte do tempo possuir múltiplas variações em seu repositório Git, chamadas de branches (“ramificações”). A grosso modo, um branch é um caminho independente de desenvolvimento, uma alternativa.
+Aliás, falando em ramificações, precisamos falar logo sobre o termo branch. Para trabalhar em equipe, você pode criar diferentes branches, e o git administra todas elas em paralelo para evitar problemas de versão. Então, posteriormente, com um comando que veremos, é possível unificar as ramificações.
 
-A princípio pode parecer fácil se perder em diversos caminhos, mas o comando git branch facilita o gerenciamento de tudo isso. Com diferentes parâmetros, é possível listar, criar ou apagar os branches.
+O comando “git branch” cria novas branches. Mas também pode funcionar como uma forma de verificar as ramificações já existentes. 
 
-Exemplos:
+Depois de criar uma, você precisa de um “push” para subir essa ramificação. Assim:
 
-$ git branch (lista todas as ramificações)
+“git push -u <remote> <nome-da-branch>”.
 
-$ git branch <nome_do_branch> (cria um branch com o nome especificado)
+Por sua vez, para deletar uma branch, use:
 
-$ git branch -d <nome_do_branch> (deleta o branch com o nome especificado)
+git branch -d <nome-da-branch>
 
-7. git checkout
-Ainda sobre branches, esse comando Git pode ser utilizado para trocar de uma ramificação para outra.
 
-Exemplo:
+7. git merge
+Depois de programar em uma branch, você tem que fazer uma conjunção dela com outras para de fato subir as alterações. É só colocar o nome da branch que desejamos mesclar com a principal depois do termo merge.
 
-$ git checkout <nome_do_branch>
 
-Também é possível combinar operações, criando e fazendo o checkout de um novo branch com um único comando:
+8. git checkout
+Para fazer o merge corretamente, é preciso olhar esse outro comando, o checkout. O objetivo dele é fazer a pessoa programadora mudar de branch. Você pode usar o “git branch” para saber quais existem e depois trocar de uma para outra. 
 
-$ git checkout -b <nome_do_branch_novo>
+É importante destacar que é preciso fazer um checkout para a master branch quando queremos captar as mudanças de outra ramificação.
 
-Comandos Git intermediários
-8. git remote
-O comando Git remote estabelece uma conexão entre seu repositório local e um repositório remoto.
 
-Exemplo:
+9. git revert
+O revert é um dos comandos git aplicados para garantir a segurança dos nossos projetos. Permite desfazer algum commit e recuperar uma versão saudável, seja localmente, seja remotamente. 
 
-$ git remote add <nomecurto> <url>
+Para usá-lo, é preciso primeiro executar um “git log -- oneline” para obter o número do hash. Com o hash, então, é possível digitar: “git revert 'nº do hash'”.
 
-9. git push
-Esse comando serve para subir suas modificações para um repositório remoto conectado anteriormente com git remote.
 
-Exemplo:
+10. git rm
+O git rm é um comando muito útil para remover arquivos do git e parar de monitorá-los, ou seja, de associá-los ao repositório. 
 
-$ git push -u <nome_curto> <nome_do_branch>
-
-É importante especificar a origem e o upstream antes de usar o git push. Veja o exemplo:
-
-$ git push –set-upstream <nome_curto> <nome_do_branch>
-
-10. git fetch
-Quando você precisa baixar as mudanças criadas por outros membros do seu projeto colaborativo, você precisa do comando Git fetch. A partir desse comando, você irá receber todas as informações de commits, para avaliar, antes de aplicar essas alterações na sua versão local do repositório.
-
-Exemplo:
-
-$ git fetch
 
 11. git pull
-O comando Git pull baixa o conteúdo (não os metadados) do que foi alterado no repositório remoto para o seu repositório local e imediatamente atualiza seu contreúdo para a última versão.
+Antes de começar a programar em algum repositório, é bom também executar um “pull”. Esse comando traz para a sua máquina todas as mudanças que foram realizadas na plataforma. Ou seja, é uma forma de atualizar a sua versão da aplicação com o que foi alterado remotamente.
 
-Exemplo:
-
-$ git pull <URL>
 
 12. git stash
-Esse comando Git armazena temporariamente seus arquivos modificados em uma área chamada stash (“esconderijo”), sem interagir com os outros arquivos até ser necessário.
+O stash serve para criar uma pilha de alterações que serão enviadas posteriormente para o repositório. É uma boa forma de guardar algumas mudanças em espera enquanto você muda de branch para trabalhar em outros aspectos do sistema. É ideal para sistemas grandes, com muitas ramificações que demandam essa flexibilidade da pessoa programadora. Exemplo: “git stash”
 
-Exemplo:
 
-$ git stash
+13. git config
+O config é um comando inicial para vincular o trabalho no repositório com sua conta no github. Assim, é configurado com o nome e com o e-mail. 
 
-Para listar todos os seus “esconderijos”, usamos:
 
-$ git stash list
+14. git reset
+O reset é outra forma de voltar ao último estado saudável do seu sistema, uma alternativa ao revert. Funciona assim: “git reset --hard HEAD~1”.
 
-Quando for o momento de aplicar o conteúdo do stash a um branch, usamos o parâmetro “apply”:
 
-$ git stash apply
+15. git push
+O push serve para subir as alterações de uma ramificação para um certo repositório. Ele entrega todos os commits e a mensagem. Exemplo: “git push”
 
-13. git show
-Quer detalhes específicos sobre um commit que o log não mostra? O comando Git show é a resposta.
 
-Exemplo:
-
-$ git show <hash_do_commit>
-
-14. git rm
-Para remover arquivos da sua pasta, você pode utilizar o comando Git rm.
-
-Exemplo:
-
-$ git rm <nome_do_arquivo>
-
-15. git help
-Existem inúmeros comandos no Git, muito mais do que os 25 dessa lista, cada um com sua função, parâmetros e características. Felizmente, o próprio Git tem o comando help para trazer ajuda diretamente no terminal.
-
-Exemplo:
-
-$ git help <comando que se tem dúvida>
-
-16. git merge
-Esse comando Git integra as mudanças de dois branches diferentes em um único branch. Ele precisa ser iniciado a partir de um branch já selecionado, que será mesclado com outro, com o nome passado por parâmetro.
-
-Exemplo:
-
-$ git merge <nome_do_branch>
-
-Comandos Git avançados
-17. git rebase
-Git rebase a princípio parece fazer o mesmo que um comando git merge: ele integra dois branches em um branch único. Porém, esse comando refaz o histórico de commits, tornando-o linear. É o mais indicado para consolidar múltiplos branches.
-
-Exemplo:
-
-$ git rebase <base>
-
-18. git pull –rebase
-Essa é uma variação do comando pull mostrado anteriormente. A partir dessa instrução, o Git irá fazer um rebase (não um merge) depois de se utilizar um comando pull.
-
-Exemplo:
-
-$ git pull –rebase
-
-19. git cherry-pick
-Esse é um comando poderoso que permite selecionar qualquer commit específico de um brach e aplicá-lo a outro branch, sem precisar de uma mescla completa. A operação fica adicionada no histórico.
-
-Exemplo:
-
-$ git cherry-pick <commit-hash>
-
-20. git archive
-Esse comando Git combina múltiplos arquivos em um único arquivo, como se fosse um arquivo zipado. Esse pacote pode ser aberto depois e os arquivos contidos podem ser extraídos individualmente.
-
-Exemplo:
-
-$ git archive –format zip HEAD > archive-HEAD.zip
-
-21. git blame
-O comando “dedo-duro”, blame ajuda a determinar qual usuário realizou qual mudança em um determinado arquivo.
-
-Exemplo:
-
-$ git blame <nome_do_arquivo>
-
-22. git tag
-Tags são uma boa opção para marcar uma branch e evitar alteração, principalmente em releases públicos.
-
-Exemplo:
-
-$ git tag -a v1.0.0
-
-23. git diff
-Para comparar dois arquivos gits ou dois branches antes de passarem por um commit ou um push, é importante executar esse comando Git.
-
-Exemplos:
-
-comparando o repositório ativo com o repositório local: $ git diff HEAD <nome_do_arquivo>
-comparando duas ramificações: $ git diff <branch de origem> <branch de destino>
-24. git citool
-Esse comando Git oferece uma alternativa gráfica ao commit.
-
-Exemplo:
-
-$ git citool
-
-25. git whatchanged
-Esse comando oferece informações de log, mas em formato raw.
-
-Exemplo:
-
-$ git whatchanged
